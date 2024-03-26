@@ -27,7 +27,7 @@ char ***parse(char *line)
 			fprintf(stderr, "Memory allocation failed\n");
 			exit(EXIT_FAILURE);
 		}
-		parsed_command = strtok(command, TOK_DELIM);
+		parsed_command = strtok(commands, TOK_DELIM);
 		while (parsed_command != NULL && arg_index < MAX_ARGS - 1)
 		{
 			command[arg_index] = strdup(parsed_command);
@@ -44,6 +44,6 @@ char ***parse(char *line)
 		command_index++;
 		command = strtok(NULL, "|");
 	}
-	commands[command_index] = NULL;
-	return (commands);
+	parsed_commands[command_index] = NULL;
+	return (parsed_commands);
 }
