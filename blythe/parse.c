@@ -20,7 +20,6 @@ char ***parse(char *line)
 	token = strtok(line, "|");
 	while (token != NULL && command_index < MAX_CMDS)
 	{
-
 		if (args == NULL)
 		{
 			fprintf(stderr, "Memory allocation failed\n");
