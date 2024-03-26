@@ -13,4 +13,8 @@
 #define MAX_ARGS 64
 #define MAX_LINE_LENGTH 256
 
+int main(int argc, char **argv, char **env);
+char ***parse(char *line);
+char **prompt();
+
 #endif
