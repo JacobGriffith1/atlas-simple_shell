@@ -9,7 +9,7 @@ char ***parse(char *line)
 {
 	int command_index = 0;
 	char *commands, *parsed_command;
-	char ***parsed_commands = malloc(MAX_COMMANDS * sizeof(char **));
+	char ***parsed_commands = malloc(MAX_CMDS * sizeof(char **));
 
 	if (parsed_commands == NULL)
 	{
@@ -17,7 +17,7 @@ char ***parse(char *line)
 		exit(EXIT_FAILURE);
 	}
 	commands = strtok(line, "|");
-	while (commands != NULL && command_index < MAX_COMMANDS)
+	while (commands != NULL && command_index < MAX_CMDS)
 	{
 		int arg_index = 0;
 		char **command = malloc(MAX_ARGS * sizeof(char *));
