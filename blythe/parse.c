@@ -1,15 +1,16 @@
 #include "shell.h"
 /**
  * parse - Parse user input into distinct cmds and args.
- * @line - User input to be parsed
- * Return - A double array of cmds and their args.
+ * @line: User input to be parsed
+ * Return: A double array of cmds and their args.
  */
 
 char ***parse(char *line)
 {
-	char *token;
+	int command_index = 0, arg_index = 0;
+	char *token, *arg_token = strtok(token, TOK_DELIM);
+	char **args = malloc(MAX_ARGS * sizeof(char *));
 	char ***commands = malloc(MAX_COMMANDS * sizeof(char **));
-	int command_index = 0;
 
 	if (commands == NULL)
 	{
@@ -17,23 +18,18 @@ char ***parse(char *line)
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, "|");
-
 	while (token != NULL && command_index < MAX_COMMANDS)
 	{
-		char **args = malloc(MAX_ARGS * sizeof(char *));
 
 		if (args == NULL)
 		{
 			fprintf(stderr, "Memory allocation failed\n");
 			exit(EXIT_FAILURE);
 		}
-		int arg_index = 0;
-		char *arg_token = strtok(token, TOK_DELIM);
 
 		while (arg_token != NULL && arg_index < MAX_ARGS - 1)
 		{
 			args[arg_index] = strdup(arg_token);
-
 			if (args[arg_index] == NULL)
 			{
 				fprintf(stderr, "Memory allocation failed\n");
@@ -48,6 +44,5 @@ char ***parse(char *line)
 		token = strtok(NULL, "|");
 	}
 	commands[command_index] = NULL;
-
-	return commands;
+	return (commands);
 }
