@@ -24,6 +24,8 @@
  * for the sake of clarity.
  */
 
+I went ahead and inserted some basic prototypes in our main.h file. Modify them if you need to! -JG
+
 /**
 0. README, man, AUTHORS [mandatory]
 ( )- Write a "README"
@@ -108,5 +110,3 @@ Simple shell 0.4 +
 
 GitHub repository: "atlas-simple_shell"
 */
-
-
