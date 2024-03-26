@@ -7,40 +7,42 @@
 
 char ***parse(char *line)
 {
-	int command_index = 0, arg_index = 0;
-	char *token = strtok(line, "|"), *arg_token = strtok(token, TOK_DELIM);
-	char **args = malloc(MAX_ARGS * sizeof(char *));
-	char ***commands = malloc(MAX_CMDS * sizeof(char **));
+	int command_index = 0;
+	char *commands, *parsed_command;
+	char ***parsed_commands = malloc(MAX_COMMANDS * sizeof(char **));
 
-	if (commands == NULL)
+	if (parsed_commands == NULL)
 	{
 		fprintf(stderr, "Memory allocation failed\n");
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(line, "|");
-	while (token != NULL && command_index < MAX_CMDS)
+	commands = strtok(line, "|");
+	while (commands != NULL && command_index < MAX_COMMANDS)
 	{
-		if (args == NULL)
+		int arg_index = 0;
+		char **command = malloc(MAX_ARGS * sizeof(char *));
+
+		if (command == NULL)
 		{
 			fprintf(stderr, "Memory allocation failed\n");
 			exit(EXIT_FAILURE);
 		}
-
-		while (arg_token != NULL && arg_index < MAX_ARGS - 1)
+		parsed_command = strtok(command, TOK_DELIM);
+		while (parsed_command != NULL && arg_index < MAX_ARGS - 1)
 		{
-			args[arg_index] = strdup(arg_token);
-			if (args[arg_index] == NULL)
+			command[arg_index] = strdup(parsed_command);
+			if (command[arg_index] == NULL)
 			{
 				fprintf(stderr, "Memory allocation failed\n");
 				exit(EXIT_FAILURE);
 			}
 			arg_index++;
-			arg_token = strtok(NULL, TOK_DELIM);
+			parsed_command = strtok(NULL, TOK_DELIM);
 		}
-		args[arg_index] = NULL;
-		commands[command_index] = args;
+		command[arg_index] = NULL;
+		parsed_commands[command_index] = command;
 		command_index++;
-		token = strtok(NULL, "|");
+		command = strtok(NULL, "|");
 	}
 	commands[command_index] = NULL;
 	return (commands);
