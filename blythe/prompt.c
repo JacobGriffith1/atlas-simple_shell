@@ -16,8 +16,13 @@ char **prompt()
 	line_length = getline(&line, &bufsize, stdin);
 	if (line_length == -1)
 	{
-		perror("getline failed");
-		exit(EXIT_FAILURE);
+		if (feof(stdin))
+			exit(EXIT_SUCCESS);
+		else
+		{
+			perror("getline failed");
+			exit(EXIT_FAILURE);
+		}
 	}
 	parsed_cmds = *parse(line);
 	free(line);
