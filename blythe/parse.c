@@ -42,7 +42,7 @@ char ***parse(char *line)
 		command[arg_index] = NULL;
 		parsed_commands[command_index] = command;
 		command_index++;
-		command = strtok(NULL, "|");
+		commands = strtok(NULL, "|");
 	}
 	parsed_commands[command_index] = NULL;
 	return (parsed_commands);
