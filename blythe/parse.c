@@ -8,9 +8,9 @@
 char ***parse(char *line)
 {
 	int command_index = 0, arg_index = 0;
-	char *token, *arg_token = strtok(token, TOK_DELIM);
+	char *token = strtok(line, "|"), *arg_token = strtok(token, TOK_DELIM);
 	char **args = malloc(MAX_ARGS * sizeof(char *));
-	char ***commands = malloc(MAX_COMMANDS * sizeof(char **));
+	char ***commands = malloc(MAX_CMDS * sizeof(char **));
 
 	if (commands == NULL)
 	{
@@ -18,7 +18,7 @@ char ***parse(char *line)
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, "|");
-	while (token != NULL && command_index < MAX_COMMANDS)
+	while (token != NULL && command_index < MAX_CMDS)
 	{
 
 		if (args == NULL)

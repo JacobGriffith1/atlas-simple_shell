@@ -7,6 +7,10 @@
 #include <stdio.h>
 #include <string.h>
 
-
+#define TOK_DELIM " \t\r\n\a"
+#define TOK_BUFSIZE 64
+#define MAX_CMDS 16
+#define MAX_ARGS 64
+#define MAX_LINE_LENGTH 256
 
 #endif
