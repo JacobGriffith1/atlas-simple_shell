@@ -6,10 +6,22 @@ int ss_help(char **args);
 
 char *builtin_str[] = {"cd", "exit", "help"};
 int (*builtin_func[]) (char **) = {&ss_cd, &ss_exit, &ss_help};
-int num_builtins() 
+
+/**
+ * num_builtins - Returns the number of builtins for the shell
+ * Return: The number of builtin functions.
+ */
+
+int num_builtins(void)
 {
-	return sizeof(builtin_str) / sizeof(char *);
+	return ((sizeof(builtin_str)) / (sizeof(char *)));
 }
+
+/**
+ * ss_cd - Used to change directories while within the shell.
+ * @args: Arguments
+ * Return: 1
+ */
 
 int ss_cd(char **args)
 {
@@ -21,6 +33,12 @@ int ss_cd(char **args)
 	return (1);
 }
 
+/**
+ * ss_exit - Used to exit the shell.
+ * @args: Arguments
+ * Return: 0
+ */
+
 int ss_exit(char **args)
 {
 	return (0);
@@ -30,6 +48,7 @@ int ss_exit(char **args)
  * ss_help - Used to list the built-in functions of the shell.
  * Written in the style of a medieval herald.
  * @args: Arguments
+ * Return: 1
  */
 
 int ss_help(char **args)
