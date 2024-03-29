@@ -1,8 +1,8 @@
 #include "shell.h"
 /**
  * find_path - Processes parsed commands.
- * @cmds - Parsed commands to be processed
- * @env - The environment containing the PATH
+ * @cmds: Parsed commands to be processed
+ * @env: The environment containing the PATH
  * Return: NULL.
  */
 
@@ -13,9 +13,9 @@ void find_path(char ***cmds, char **env)
 	while (parsed_commands[command_index] != NULL)
 	{
 		char **command = parsed_commands[command_index];
-        int is_builtin = 0;
+		int is_builtin = 0;
 		int i = 0;
-	
+
 		for (i = 0; i < MAX_BUILTINS; i++)
 		{
 			if (strcmp(command[0], builtins[i]) == 0)
@@ -57,7 +57,7 @@ void find_path(char ***cmds, char **env)
 						execve(full_path, command, env);
 						perror("Execve failed");
 						exit(EXIT_FAILURE);
-                    }
+					}
 					else
 					{
 						int status;
