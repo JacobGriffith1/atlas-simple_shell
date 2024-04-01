@@ -15,6 +15,7 @@ void find_path(char ***cmds, char **env)
 	{
 		char **command = cmds[cmnd_i];
 		int is_builtin = 0, i = 0;
+		char *builtins[] = {"cd", "exit", "help"};
 		char *bicall[] = {&ss_cd, &ss_exit, &ss_help};
 
 		for (i = 0; i < MAX_BUILTINS; i++)
