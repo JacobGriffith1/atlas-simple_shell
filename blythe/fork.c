@@ -1,12 +1,12 @@
 #include "shell.h"
 /**
  * fork - fork the process to execute a command.
- * @command - the command to execute.
- * @env - the enironment where to find the command function.
- * Return - NULL.
+ * @command: the command to execute.
+ * @env: the enironment where to find the command function.
+ * Return: NULL.
  */
 
-void fork(char **command, char **env)
+void fork_exec(char **command, char **env)
 {
 	pid_t pid = fork();
 
@@ -24,6 +24,7 @@ void fork(char **command, char **env)
 	else
 	{
 		int status;
+
 		waitpid(pid, &status, 0);
 	}
 }

@@ -12,9 +12,18 @@
 #define MAX_CMDS 16
 #define MAX_ARGS 64
 #define MAX_LINE_LENGTH 256
+#define MAX_BUILTINS 3
+
+static char builtins = {"cd", "exit", "help"};
 
 int main(int argc, char **argv, char **env);
 char ***parse(char *line);
 char **prompt();
+void fork_exec(char **command, char **env);
+void find_path(char ***cmds, char **env);
+int num_builtins(char **);
+int ss_cd(char **args);
+int ss_exit(char **args);
+int ss_help(char **args);
 
 #endif

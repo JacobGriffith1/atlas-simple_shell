@@ -18,7 +18,7 @@ void find_path(char ***cmds, char **env)
 		for (i = 0; i < MAX_BUILTINS; i++)
 			if (strcmp(command[0], builtins[i]) == 0)
 			{
-				execute_builtin(command);
+				num_builtins(command);
 				is_builtin = 1;
 				break;
 			}
@@ -40,7 +40,7 @@ void find_path(char ***cmds, char **env)
 				strcat(full_path, "/");
 				strcat(full_path, command[0]);
 				if (access(full_path, X_OK) == 0)
-					fork(command, env);
+					fork_exec(command, env);
 				free(full_path);
 				path_dir = strtok(NULL, ":");
 			}
