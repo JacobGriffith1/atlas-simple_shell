@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/types.h>
 
 #define TOK_DELIM " \t\r\n\a"
 #define TOK_BUFSIZE 64
@@ -20,8 +21,8 @@ char **prompt();
 void fork_exec(char **command, char **env);
 void find_path(char ***cmds, char **env);
 int num_builtins(char **);
-char ss_cd(char ***cmds);
-char ss_exit(void);
-char ss_help(void);
+void ss_cd(char **cmds);
+void ss_exit(void);
+void ss_help(void);
 
 #endif
