@@ -7,13 +7,13 @@
  * Return: 0 or -1 on fail.
  */
 
-int main(char **env)
+int main(char *env[])
 {
 	while (1)
 	{
-		char ***cmds = **prompt();
+		char ***cmds = prompt();
 
-		find_path(***cmds, **env);
+		find_path(***cmds, *env[]);
 	}
 	return (0);
 }
