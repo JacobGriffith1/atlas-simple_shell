@@ -1,22 +1,6 @@
 #include "shell.h"
 
-char num_builtins(char **);
-char ss_cd(char **args);
-char ss_exit(char **args);
-char ss_help(char **args);
-
 char *builtins[] = {"cd", "exit", "help"};
-int (*builtin_func[]) (char **) = {&ss_cd, &ss_exit, &ss_help};
-
-/**
- * num_builtins - Returns the number of builtins for the shell
- * Return: The number of builtin functions.
- */
-
-char num_builtins(char **)
-{
-	return ((sizeof(builtins)) / (sizeof(char *)));
-}
 
 /**
  * ss_cd - Used to change directories while within the shell.
@@ -24,23 +8,23 @@ char num_builtins(char **)
  * Return: 1
  */
 
-char ss_cd(char **args)
+char ss_cd(char ***cmds)
 {
-	if (args[1] == NULL)
+	if (cmds[1] == NULL)
 		fprintf(stderr, "ss: expected argument to \"cd\"\n");
+	else if (chdir(cmds[1]) == NULL)
+		fprintf(stderr, "ss: directory not found \n");
 	else
-		if (chdir(args[1]) != 0)
-			perror("ss");
+		chdir(cmds[1]);
 	return (1);
 }
 
 /**
  * ss_exit - Used to exit the shell.
- * @args: Arguments
  * Return: 0
  */
 
-char ss_exit(char **args)
+char ss_exit(void)
 {
 	return (0);
 }
@@ -48,11 +32,10 @@ char ss_exit(char **args)
 /**
  * ss_help - Used to list the built-in functions of the shell.
  * Written in the style of a medieval herald.
- * @args: Arguments
  * Return: 1
  */
 
-char ss_help(char **args)
+char ss_help(void)
 {
 	int i;
 
@@ -61,7 +44,7 @@ char ss_help(char **args)
 	printf("Behold, the built in features of our mighty shell!\n");
 	printf("Type the program names and arguments,\n");
 	printf("then press thine enter key to execute your command!\n");
-	for (i = 0; i < num_builtins(); i++)
+	for (i = 0; i < MAX_BUILTINS; i++)
 		printf(" %s\n", builtins[i]);
 	printf("Should you require more information, use the 'man' command\n");
 	printf("to call upon the esteemed chronicler of the shell!\n");

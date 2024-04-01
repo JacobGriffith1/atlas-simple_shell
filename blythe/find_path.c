@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * find_path - Processes parsed commands.
  * @cmds: Parsed commands to be processed
@@ -14,12 +15,13 @@ void find_path(char ***cmds, char **env)
 	{
 		char **command = cmds[cmnd_i];
 		int is_builtin = 0, i = 0;
+		char *bicall[] = {&ss_cd, &ss_exit, &ss_help};
 
 		for (i = 0; i < MAX_BUILTINS; i++)
 			if (strcmp(command[0], builtins[i]) == 0)
 			{
-				num_builtins(command);
 				is_builtin = 1;
+				bicall[i](command);
 				break;
 			}
 		if (!is_builtin)
