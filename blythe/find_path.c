@@ -8,11 +8,11 @@
 
 void find_path(char ***cmds, char **env)
 {
-	int command_index = 0;
+	int cmnd_i = 0;
 
-	while (parsed_commands[command_index] != NULL)
+	while (cmds[cmnd_i] != NULL)
 	{
-		char **command = parsed_commands[command_index];
+		char **command = cmds[cmnd_i];
 		int is_builtin = 0;
 		int i = 0;
 
@@ -44,33 +44,12 @@ void find_path(char ***cmds, char **env)
 				strcat(full_path, "/");
 				strcat(full_path, command[0]);
 				if (access(full_path, X_OK) == 0)
-				{
-					pid_t pid = fork();
-
-					if (pid == -1)
-					{
-						perror("Fork failed");
-						exit(EXIT_FAILURE);
-					}
-					else if (pid == 0)
-					{
-						execve(full_path, command, env);
-						perror("Execve failed");
-						exit(EXIT_FAILURE);
-					}
-					else
-					{
-						int status;
-
-						waitpid(pid, &status, 0);
-						break;
-					}
-				}
+					fork(command, env);
 				free(full_path);
 				path_dir = strtok(NULL, ":");
 			}
 			free(path_copy);
 		}
-		command_index++;
+		cmnd_i++;
 	}
 }

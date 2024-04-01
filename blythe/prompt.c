@@ -24,7 +24,7 @@ char **prompt()
 			exit(EXIT_FAILURE);
 		}
 	}
-	parsed_cmds = *parse(line);
+	parsed_cmds = parse(line);
 	free(line);
 
 	return (parsed_cmds);
