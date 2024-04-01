@@ -8,15 +8,12 @@ char *builtins[] = {"cd", "exit", "help"};
  * Return: 1
  */
 
-char ss_cd(char ***cmds)
+void ss_cd(char **cmds)
 {
 	if (cmds[1] == NULL)
 		fprintf(stderr, "ss: expected argument to \"cd\"\n");
-	else if (chdir(cmds[1]) == NULL)
-		fprintf(stderr, "ss: directory not found \n");
 	else
-		chdir(cmds[1]);
-	return (1);
+		chdir(cmds);
 }
 
 /**
@@ -24,7 +21,7 @@ char ss_cd(char ***cmds)
  * Return: 0
  */
 
-char ss_exit(void)
+void ss_exit(void)
 {
 	return (0);
 }
@@ -35,7 +32,7 @@ char ss_exit(void)
  * Return: 1
  */
 
-char ss_help(void)
+void ss_help(void)
 {
 	int i;
 
@@ -48,5 +45,4 @@ char ss_help(void)
 		printf(" %s\n", builtins[i]);
 	printf("Should you require more information, use the 'man' command\n");
 	printf("to call upon the esteemed chronicler of the shell!\n");
-	return (1);
 }
