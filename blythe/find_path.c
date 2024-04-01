@@ -13,22 +13,18 @@ void find_path(char ***cmds, char **env)
 	while (cmds[cmnd_i] != NULL)
 	{
 		char **command = cmds[cmnd_i];
-		int is_builtin = 0;
-		int i = 0;
+		int is_builtin = 0, i = 0;
 
 		for (i = 0; i < MAX_BUILTINS; i++)
-		{
 			if (strcmp(command[0], builtins[i]) == 0)
 			{
 				execute_builtin(command);
 				is_builtin = 1;
 				break;
 			}
-		}
 		if (!is_builtin)
 		{
-			char *path_env = getenv("PATH");
-			char *path_copy = strdup(path_env);
+			char *path_env = getenv("PATH"), *path_copy = strdup(path_env);
 			char *path_dir = strtok(path_copy, ":");
 
 			while (path_dir != NULL)
