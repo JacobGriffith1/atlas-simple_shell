@@ -6,7 +6,7 @@
  * Return: NULL.
  */
 
-void fork_exec(char **command, char **env)
+void fork_exec(char **command, char *full_path)
 {
 	pid_t pid = fork();
 
@@ -17,9 +17,11 @@ void fork_exec(char **command, char **env)
 	}
 	else if (pid == 0)
 	{
-		execve(command[0], command, env);
-		perror("Execve failed");
-		exit(EXIT_FAILURE);
+		if (execve(command[0], command, full_path) == -1)
+		{
+			perror("Execve failed");
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
