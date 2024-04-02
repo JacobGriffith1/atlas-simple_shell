@@ -17,7 +17,7 @@ void fork_exec(char **command, char *full_path)
 	}
 	else if (pid == 0)
 	{
-		if (execve(command[0], command, full_path) == -1)
+		if (execve(command[0], command, *full_path) == -1)
 		{
 			perror("Execve failed");
 			exit(EXIT_FAILURE);

@@ -15,14 +15,14 @@
 #define MAX_LINE_LENGTH 256
 #define MAX_BUILTINS 3
 
-int main(char **env);
+int main(void);
 char ***parse(char *line);
 char **prompt();
-void fork_exec(char **command, char **env);
-void find_path(char ***cmds, char **env);
-int num_builtins(char **);
+void fork_exec(char **command, char *full_path);
+void find_path(char ***cmds);
 void ss_cd(char **cmds);
 void ss_exit(void);
 void ss_help(void);
+void find_env(char ***cmds);
 
 #endif

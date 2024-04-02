@@ -18,12 +18,12 @@ void ss_cd(char **cmds)
 
 /**
  * ss_exit - Used to exit the shell.
- * Return: 0
+ * Return: ''
  */
 
 void ss_exit(void)
 {
-	return (0);
+	return;
 }
 
 /**
