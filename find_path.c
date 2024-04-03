@@ -3,11 +3,10 @@
 /**
  * find_path - Processes parsed commands.
  * @cmds: Parsed commands to be processed
- * @env: The environment containing the PATH
  * Return: NULL.
  */
 
-void find_path(char ***cmds)
+void find_path(char **cmds)
 {
 	int cmnd_i = 0;
 

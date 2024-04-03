@@ -1,2 +1,2 @@
 C - Simple Shell
-Atlas School
+By Jacob Griffith and Blythe Lockhart

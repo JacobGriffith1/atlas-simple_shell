@@ -19,10 +19,10 @@ int main(void);
 char ***parse(char *line);
 char **prompt();
 void fork_exec(char **command, char *full_path);
-void find_path(char ***cmds);
-void ss_cd(char **cmds);
+void find_path(char **cmds);
+void ss_cd(const char *cmds);
 void ss_exit(void);
 void ss_help(void);
-void find_env(char ***cmds);
+void find_env(char **cmds);
 
 #endif

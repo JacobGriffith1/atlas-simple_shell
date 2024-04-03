@@ -1,13 +1,19 @@
 #include "shell.h"
 
-void find_env(char ***cmds)
+/**
+ * find_env - Find environment
+ *@cmds: Commands
+ * Return: N/A
+ */
+
+void find_env(char **cmds)
 {
 	char *path_env = getenv("PATH"), *path_copy = strdup(path_env);
 	char *path_dir = strtok(path_copy, ":");
 
 	while (path_dir != NULL)
 	{
-		char *full_path = malloc(strlen(path_dir) + strlen(command[0]) + 2);
+		char *full_path = malloc(strlen(path_dir) + strlen(cmds[0]) + 2);
 
 		if (full_path == NULL)
 		{
@@ -16,9 +22,9 @@ void find_env(char ***cmds)
 		}
 		strcpy(full_path, path_dir);
 		strcat(full_path, "/");
-		strcat(full_path, command[0]);
+		strcat(full_path, cmds[0]);
 		if (access(full_path, X_OK) == 0)
-			fork_exec(command, full_path);
+			fork_exec(cmds, full_path);
 		free(full_path);
 		path_dir = strtok(NULL, ":");
 	}

@@ -1,16 +1,14 @@
 #include "shell.h"
 
-char *builtins[] = {"cd", "exit", "help"};
-
 /**
  * ss_cd - Used to change directories while within the shell.
- * @args: Arguments
+ * @cmds: Commands
  * Return: 1
  */
 
-void ss_cd(char **cmds)
+void ss_cd(const char *cmds)
 {
-	if (cmds[1] == NULL)
+	if (!cmds[1])
 		fprintf(stderr, "ss: expected argument to \"cd\"\n");
 	else
 		chdir(cmds);
@@ -23,7 +21,7 @@ void ss_cd(char **cmds)
 
 void ss_exit(void)
 {
-	return;
+	;
 }
 
 /**
@@ -35,6 +33,7 @@ void ss_exit(void)
 void ss_help(void)
 {
 	int i;
+	char *builtins = "ss_cd" "ss_exit" "ss_help";
 
 	printf("Welcome, my liege, to the Atlas Simple Shell;\n");
 	printf("a joint endeavor of castles Griffith and Lockhart!\n");
@@ -42,7 +41,7 @@ void ss_help(void)
 	printf("Type the program names and arguments,\n");
 	printf("then press thine enter key to execute your command!\n");
 	for (i = 0; i < MAX_BUILTINS; i++)
-		printf(" %s\n", builtins[i]);
+		printf(" %d\n", builtins[i]);
 	printf("Should you require more information, use the 'man' command\n");
 	printf("to call upon the esteemed chronicler of the shell!\n");
 }

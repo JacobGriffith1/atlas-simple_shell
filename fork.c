@@ -1,8 +1,8 @@
 #include "shell.h"
 /**
- * fork - fork the process to execute a command.
+ * fork_exec - fork the process to execute a command.
  * @command: the command to execute.
- * @env: the enironment where to find the command function.
+ * @full_path: Full path to command.
  * Return: NULL.
  */
 
